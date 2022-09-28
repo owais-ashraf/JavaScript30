@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-01</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <link rel="shortcut icon" href="#">
+    <h1>Animal Sounds</h1>
+<body>
+   <div class="keys">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <span class="sound">Cat</span>
+         </div> 
+
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <span class="sound">Snake</span>
+         </div>
+
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <span class="sound">Dog</span>
+         </div>
+
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <span class="sound">Frog</span>
+         </div>
+
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <span class="sound">Goat</span>
+         </div>
+
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <span class="sound">Horse</span>
+         </div>
+
+        <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <span class="sound">Jaguar</span>
+         </div>
+
+        <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <span class="sound">Elephant</span>
+         </div>
+
+        <div data-key="76" class="key">
+            <kbd>L</kbd>
+            <span class="sound">Lion</span>
+         </div>
+   </div>
+   
+<audio data-key="65" src="sounds/cat.wav"></audio>
+<audio data-key="83" src="sounds/Snake.mp3"></audio>
+<audio data-key="68" src="sounds/Dog.wav"></audio>
+<audio data-key="70" src="sounds/frog.mp3"></audio>
+<audio data-key="71" src="sounds/goat.mp3"></audio>
+<audio data-key="72" src="sounds/Horse.mp3"></audio>
+<audio data-key="74" src="sounds/Jaguar.mp3"></audio>
+<audio data-key="75" src="sounds/Elephant.mp3"></audio>
+<audio data-key="76" src="sounds/lion.wav"></audio>
+
+<script>
+    
+    function playSound(e){
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if(!audio) return; //stop the function from running all together
+        audio.currentTime = 0; //rewind audio
+        audio.play();
+        key.classList.add('playing');
+    }
+    
+    function removeTransition(e){
+        if(e.propertyName !== 'transform') return; 
+        this.classList.remove(`playing`);
+        console.log(this);       
+    }
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener('keydown', playSound);
+</script>
+
+
+</body>
+</html>
