@@ -6,10 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" src="style.css"> -->
 </head>
-<h1>Clock</h1>
-
 <body>
     <div class="clock">
         <div class="clock-face">
@@ -112,14 +109,17 @@
 
         function setDate() {
             const now = new Date();
+            
             const seconds = now.getSeconds();
             const secDegree = (seconds / 60) * 360;
             secs.style.transform = `rotate(${secDegree}deg)`;
+            
             const minutes = now.getMinutes();
             const minDegree = (minutes / 60) * 360;
             mint.style.transform = `rotate(${minDegree}deg)`;
+            
             const hours = now.getHours();
-            const hrsDegree = (hours / 24) * 360;
+            const hrsDegree = (hours / 12) * 360;
             hrs.style.transform = `rotate(${hrsDegree}deg)`;
         }
 setInterval(setDate,1000);
