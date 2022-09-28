@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" src="style.css"> -->
+</head>
+<h1>Clock</h1>
+
+<body>
+    <div class="clock">
+        <div class="clock-face">
+            <div class="hour"></div>
+            <div class="min"></div>
+            <div class="sec"></div>
+        </div>
+    </div>
+    <style>
+        html {
+            background: url('neon background.jpg');
+            background-size: cover;
+            font-family: 'San Fransico';
+            text-align: center;
+            font-size: 10px;
+        }
+
+        body {
+            margin: 0;
+            font-size: 2rem;
+            display: flex;
+            flex: 1;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        .clock {
+            width: 350px;
+            height: 350px;
+            border: 20px solid rgba(0, 0, 0, 0.945);
+            border-radius: 50%;
+            position: fixed;
+            justify-content: center;
+            margin-left: 35%;
+            margin-top: 5%;
+            box-shadow: 6px 6px 8px rgba(11, 194, 250, 0.945), -6px -6px 8px purple;
+        }
+
+        .clock-face {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            top: 5.5%;
+            left: 4.5%;
+            position: absolute;
+            transform: translateY(-3px);
+            background: url("sky3.jpg");
+            background-size: cover;
+            background-color: black;
+            background-position: center;
+            z-index: 4;
+            /* account for the height of the clock hands */
+        }
+
+        .hour {
+            width: 8px;
+            height: 90px;
+            background: rgb(5, 5, 5);
+            position: absolute;
+            top: 25%;
+            left: 47%;
+            border-radius: 50% 50% 0px 0px;
+            transform-origin: bottom;
+            transition: all (0.5s);
+            z-index: 2;
+        }
+
+        .min {
+            width: 6px;
+            height: 130px;
+            background: rgb(7, 7, 7);
+            position: absolute;
+            top: 13%;
+            left: 47%;
+            border-radius: 50% 50% 0px 0px;
+            transform-origin: bottom;
+            transition: all (0.5s);
+            z-index: 1;
+        }
+
+        .sec {
+            width: 3px;
+            height: 150px;
+            background: rgb(252, 1, 1);
+            position: absolute;
+            top: 7%;
+            left: 48%;
+            border-radius: 50% 50% 0px 0px;
+            transform-origin: bottom;
+            transition: all 0.08s;
+            transition-timing-function: cubic-bezier(0.22, 2.64, 0.5, -2.27);
+            z-index: 3;
+        }
+    </style>
+
+    <script>
+        const secs = document.querySelector(".sec")
+        const mint = document.querySelector(".min")
+        const hrs = document.querySelector(".hour")
+
+        function setDate() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            const secDegree = (seconds / 60) * 360;
+            secs.style.transform = `rotate(${secDegree}deg)`;
+            const minutes = now.getMinutes();
+            const minDegree = (minutes / 60) * 360;
+            mint.style.transform = `rotate(${minDegree}deg)`;
+            const hours = now.getHours();
+            const hrsDegree = (hours / 24) * 360;
+            hrs.style.transform = `rotate(${hrsDegree}deg)`;
+        }
+setInterval(setDate,1000);
+
+    </script>
+</body>
+
+</html>
