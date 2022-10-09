@@ -50,7 +50,7 @@
     // })
 
 
-    const fil = inventors.filter(inventor => (inventor.first == Max ? true : false ))
+    const fil = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600));
     console.table(fil)
 
 
